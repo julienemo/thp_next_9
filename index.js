@@ -5,7 +5,7 @@ const errorMsg = "An error ocurred. Please contact service provider or retry lat
 const longerWordMsg = "Please provide a longer keyword."
 
 const key = '8de0df23'
-const endPoint = 'http://www.omdbapi.com/?apikey='
+const endPoint = 'https://www.omdbapi.com/?apikey='
 
 // dom targets
 const form = document.querySelector('form');
