@@ -1,8 +1,11 @@
 body {
-  max-height: 3000px; /* Used to enable scrolling */
+  max-height: 3000px; 
+  /* very high so that gradient doesn't repeat */
+  /* max so that there is no empty space*/
   background: linear-gradient(55deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 85%);
   display: flex;
   flex-direction: column;
+  /* display and flex ensures page is centered*/
 }
 
 main{
@@ -24,6 +27,11 @@ input[type=text]:focus, textarea:focus {
   margin-top: 0.05em;
 }
 
+.title_text{
+  height: 3em;
+  align-self: center;
+}
+
 .modal {
   display: none;
   position: fixed; 
@@ -36,6 +44,7 @@ input[type=text]:focus, textarea:focus {
   background-color: rgba(0,0,0,0.4); 
 }
 
+/* scrolling animations related to intersection observer*/
 .movie_card{
   transform: translateY(0);
   opacity: 1;
@@ -45,9 +54,4 @@ input[type=text]:focus, textarea:focus {
 .invisible {
   transform: translateY(50px);
   opacity: 0;
-}
-
-.title_text{
-  height: 3em;
-  align-self: center;
 }
