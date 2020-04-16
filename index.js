@@ -23,7 +23,7 @@ const movieCard = (movie, galleryZone) => {
     movie.Poster = 'images/default.png'
   }
   galleryZone.innerHTML += `
-  <div class='col col-3 mx-1 mb-4 movie_card card border invisible'>
+  <div class='col col-3 mx-1 my-5 movie_card card border invisible'>
     <img class="poster rounded" src="${movie.Poster}" alt="${movie.Title} poster">
     <p class='title_text'>${movie.Title} (${movie.Year})</p>
     <button id="${movie.imdbID}" onclick="showMovieDetail('${movie.imdbID}')" 
