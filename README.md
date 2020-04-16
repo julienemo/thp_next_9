@@ -4,6 +4,8 @@
 
 [demo here](https://julienemo.github.io/thp_next_9/)
 
+**For safety reason, the search key is not exposed. To use demo, user need to provide own API as parameter**
+
 * * *
 This alternative searching movie engine uses [Omdb API](http://www.omdbapi.com/). Its working logique is the following
 

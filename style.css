@@ -1,5 +1,7 @@
 body {
+  min-height: 100vh;
   max-height: 3000px; 
+  /* min height so that no repeat when page empty */
   /* very high so that gradient doesn't repeat */
   /* max so that there is no empty space*/
   background: linear-gradient(55deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 85%);

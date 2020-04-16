@@ -4,10 +4,10 @@ const minimumKeywordLength = 3;
 const errorMsg = "An error ocurred. Please contact service provider or retry later"
 const longerWordMsg = "Please provide a longer keyword."
 
-const key = '8de0df23'
 const endPoint = 'https://www.omdbapi.com/?apikey='
 
 // dom targets
+const apiKey = document.querySelector('#api_key');
 const form = document.querySelector('form');
 const keyWordZone = document.querySelector('#keyword');
 const gallery = document.querySelector('#gallery');
@@ -87,7 +87,7 @@ form.onsubmit = fillPage;
 btnClose.onclick = () => { modal.style.display = 'none'; }
 
 // tool funcs
-const url = (params, value) => { return `${endPoint}${key}&${params}=${value}`}
+const url = (params, value) => { return `${endPoint}${apiKey.value}&${params}=${value}`}
 
 const fillModal = (title, content) => {
   detailTitle.innerHTML = title;
