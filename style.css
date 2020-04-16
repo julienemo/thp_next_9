@@ -1,0 +1,13 @@
+.card{
+  height: 400px;
+  padding: 1em;
+  background-position: center;
+  background-size: fit;
+}
+
+.poster {
+  height: 290px;
+  object-fit: contain;
+  margin-bottom: 0.3em;
+  margin-top: 0.05em;
+}
