@@ -33,7 +33,24 @@ const movieCard = (movie, galleryZone) => {
   `
 }
 
+const showMovieDetail = (movieId) => {
+  modal.style.display = 'block';
+  fetch(url('i', movieId))
+  .then((response) => (response.json()))
+  .then((response) => {
+    modal.style.display = 'block';
+    fillModal(
+      `${response.Title} (${response.Released})`, 
+      response.Plot
+    )
+  }).catch((error) => {
+    console.log(error);
+    fillModal('Error', errorMsg);
+  })
+}
+
 const moviesCall = (keyWordZone) => {
+  gallery.innerHTML = "<p class='waiting'>We are looking for your movies. The results will be displayed here shortly.</p>"
   fetch(url('s', keyWordZone.value))
   .then((response) => (response.json()))
   .then((response) => {
@@ -57,22 +74,6 @@ const moviesCall = (keyWordZone) => {
   })
 }
 
-const showMovieDetail = (movieId) => {
-  fetch(url('i', movieId))
-  .then((response) => (response.json()))
-  .then((response) => {
-    modal.style.display = 'block';
-    fillModal(
-      `${response.Title} (${response.Released})`, 
-      response.Plot
-    )
-  }).catch((error) => {
-    console.log(error);
-    modal.style.display = 'block';
-    fillModal('Error', errorMsg);
-  })
-}
-
 const fillPage= (e) => {
   e.preventDefault();
   if (keyWordZone.value.length < minimumKeywordLength) {
@@ -84,7 +85,10 @@ const fillPage= (e) => {
 
 // page load, event attribution
 form.onsubmit = fillPage;
-btnClose.onclick = () => { modal.style.display = 'none'; }
+btnClose.onclick = () => {
+  fillModal("Just one moment...", "You'll see film plot shortly here") 
+  modal.style.display = 'none'; 
+}
 
 // tool funcs
 const url = (params, value) => { return `${endPoint}${apiKey.value}&${params}=${value}`}

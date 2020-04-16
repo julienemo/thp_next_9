@@ -34,6 +34,11 @@ input[type=text]:focus, textarea:focus {
   align-self: center;
 }
 
+.waiting {
+  align-self: center;
+  color: white;
+}
+
 .modal {
   display: none;
   position: fixed; 
