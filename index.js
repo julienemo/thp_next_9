@@ -4,9 +4,9 @@ const minimumKeywordLength = 3;
 const errorMsg = "An error ocurred. Please contact service provider or retry later"
 const longerWordMsg = "Please provide a longer keyword."
 
-const endPoint = 'https://www.omdbapi.com/?apikey='
+const endPoint = 'https://www.omdbapi.com/?apikey='// doc indicates http but github page only want secured requests
 
-// dom targets
+// DOM targets
 const apiKey = document.querySelector('#api_key');
 const form = document.querySelector('form');
 const keyWordZone = document.querySelector('#keyword');
@@ -17,20 +17,16 @@ const btnClose = document.querySelector('#btn_close');
 const detailTitle = document.querySelector('#detail_title');
 const detailPlot = document.querySelector('#detail_plot');
 
-// page filling
+// page filling funcs
 const movieCard = (movie, galleryZone) => {
-  if (movie.Poster == 'N/A') {
-    movie.Poster = 'images/default.png'
-  }
+  if (movie.Poster == 'N/A') { movie.Poster = 'images/default.png' }
   galleryZone.innerHTML += `
   <div class='col col-3 mx-1 my-5 movie_card card border invisible'>
     <img class="poster rounded" src="${movie.Poster}" alt="${movie.Title} poster">
     <p class='title_text'>${movie.Title} (${movie.Year})</p>
     <button id="${movie.imdbID}" onclick="showMovieDetail('${movie.imdbID}')" 
-      class='btn_detail btn btn-info mb-3'>See detail
-    </button>
-  </div>
-  `
+    class='btn_detail btn btn-info mb-3'>See detail</button>
+  </div>`
 }
 
 const showMovieDetail = (movieId) => {
@@ -39,10 +35,7 @@ const showMovieDetail = (movieId) => {
   .then((response) => (response.json()))
   .then((response) => {
     modal.style.display = 'block';
-    fillModal(
-      `${response.Title} (${response.Released})`, 
-      response.Plot
-    )
+    fillModal(`${response.Title} (${response.Released})`, response.Plot)
   }).catch((error) => {
     console.log(error);
     fillModal('Error', errorMsg);
@@ -54,20 +47,15 @@ const moviesCall = (keyWordZone) => {
   fetch(url('s', keyWordZone.value))
   .then((response) => (response.json()))
   .then((response) => {
-    let data = response.Search;
     gallery.innerHTML = "";
-    data.forEach((item) => {
-      movieCard(item, gallery) 
-    })
+    response.Search.forEach((item) => { movieCard(item, gallery) })
     
     // observer effect
-    let observer = new IntersectionObserver((entries) => {
-      cardsAnimation(entries);
-    }, { threshold: observationThreshold });
-    let items = document.querySelectorAll('.movie_card');
-    items.forEach((item) => {
-      observer.observe(item);
-    });
+    let observer = new IntersectionObserver(
+      (entries) => { cardsAnimation(entries);},
+      { threshold: observationThreshold }
+    );
+    document.querySelectorAll('.movie_card').forEach((item) => { observer.observe(item); });
   }).catch((error) => {
     console.log(error);
     gallery.innerHTML = errorMsg;
@@ -78,8 +66,8 @@ const fillPage= (e) => {
   e.preventDefault();
   if (keyWordZone.value.length < minimumKeywordLength) {
     gallery.innerHTML = longerWordMsg;
-  } else {
-    moviesCall(keyWordZone);
+  } else { 
+    moviesCall(keyWordZone); 
   }
 }
 
