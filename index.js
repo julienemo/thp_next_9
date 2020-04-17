@@ -34,7 +34,6 @@ const showMovieDetail = (movieId) => {
   fetch(url('i', movieId))
   .then((response) => (response.json()))
   .then((response) => {
-    modal.style.display = 'block';
     fillModal(`${response.Title} (${response.Released})`, response.Plot)
   }).catch((error) => {
     console.log(error);
